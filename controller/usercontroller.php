@@ -151,7 +151,7 @@ header('location: index.php?controller=user&action=login');					exit();
 
 					$mail->isHTML(true);                                  
 					$mail->Subject = 'Confirmation email';
-					$mail->Body    = "Please click on the link below to confirm your email <a href='http://localhost/taleas/index.php?controller=user&action=confirmEmail&email=$email&confirm_code=$created'  >Click here</a>";
+					$mail->Body    = "Please click on the link below to confirm your email <a href='http://localhost/projekt/index.php?controller=user&action=confirmEmail&email=$email&confirm_code=$created'  >Click here</a>";
 
 					$mail->send();
 					echo 'Message has been sent';
@@ -239,7 +239,7 @@ header('location: index.php?controller=user&action=login');					exit();
 
 					$mail->isHTML(true);                                  
 					$mail->Subject = 'Confirmation email';
-					$mail->Body    = "Please click on the link below to confirm your email <a href='http://localhost/taleas/index.php?controller=user&action=confirmEmail&email=$email&confirm_code=$created'  >Click here</a>";
+					$mail->Body    = "Please click on the link below to confirm your email <a href='http://localhost/projekt/index.php?controller=user&action=confirmEmail&email=$email&confirm_code=$created'  >Click here</a>";
 
 					$mail->send();
 					echo 'Message has been sent';
@@ -286,7 +286,7 @@ header('location: index.php?controller=user&action=login');					exit();
 
 			if($found == '1')
 
-			{
+			{	
 				$db = Db::getInstance();
 
 				$result = $db->prepare("SELECT id FROM user WHERE email = ?");
