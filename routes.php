@@ -31,9 +31,9 @@
 
 	}
 
-			 $controllers = array(
+			 $controllers = array('posts' => ['index','show', 'addPost', 'showPost'],
 			 					  'pages' => ['home', 'error','welcome','profile','subscribeMessage'],
-								  'user' => ['signup','signupVet','signupStore','login', 'logout', 'showNormalUser', 'welcome','showVet','showStore','showLogin', 'home', 'subscribe']);
+								  'user' => ['signup','signupVet','signupStore','login','subscribe', 'logout', 'showNormalUser', 'welcome','showVet','showStore','showLogin','confirm', 'home', 'confirmEmail','facebook', 'sendMailPassword','resetPassword', 'showResetPassword', 'changePassword', 'showChangePassword', 'subscribe']);
 
 
 			 if (array_key_exists($controller, $controllers)) 
