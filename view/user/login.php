@@ -88,6 +88,7 @@
   src="http://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
+<<<<<<< HEAD
 
 <script>
 
@@ -133,6 +134,55 @@
     });
   };
 
+=======
+
+<script>
+
+    var person = {userID: "", name: "" ,email: "" };
+
+  function logIn() {
+     FB.login(function(response){
+        if (response.status=="connected"){
+          person.userID = response.authResponse.userID;
+            person.accessToken = response.authResponse.accessToken; 
+
+            FB.api('/me?fields=id,name,email',function (userData) {
+
+              person.name= userData.name;
+              person.email=userData.email;
+             
+
+               $.ajax({
+                url: "model/facebook.php",
+                method: "POST",
+                data: person,
+                dataType: "text",
+                success: function(serverResponse){
+                  if(serverResponse != "success"){
+                    window.location.href ='index.php';}
+                   else if(serverResponse == "success") {
+                  		window.location.href ='index.php?controller=user&action=welcome';
+                  }
+                 }
+
+                });
+
+              });
+        }
+      }, {scope: 'public_profile,email'})
+    }
+
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '515443685565022',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v3.1'
+    });
+  };
+
+>>>>>>> 91fd5e281ede724f20b002794f8ce4bbe11ae904
   (function(d, s, id){
      var js, fjs = d.getElementsByTagName(s)[0];
      if (d.getElementById(id)) {return;}

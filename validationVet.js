@@ -218,6 +218,7 @@ function phoneValidation(){
 
             }
         else
+<<<<<<< HEAD
             if(!PhoneConfirm(phone)) {
                  document.getElementById('phoneError').innerHTML='Your phone number is not  valid';
                  document.getElementById('phoneError').style.color='black';
@@ -227,6 +228,16 @@ function phoneValidation(){
         else{
             document.getElementById('phoneError').innerHTML='Valid';
             document.getElementById('phoneError').style.color='black';}
+=======
+            if(phone.length<10) {
+                 document.getElementById('phoneError').innerHTML='Your phone number needs to have 10 character';
+                 document.getElementById('phoneError').style.color='black';
+            }
+
+        else
+            document.getElementById('phoneError').innerHTML='Valid';
+            document.getElementById('phoneError').style.color='black';
+>>>>>>> 91fd5e281ede724f20b002794f8ce4bbe11ae904
 
 
 
@@ -255,6 +266,7 @@ function validateFormVet()
     
    
 } 
+<<<<<<< HEAD
 
 function PhoneConfirm(phone){
 var access_key = '020a64a367e46927017500e0302f96b3';
@@ -279,3 +291,5 @@ $.ajax({
 });
 return returni;
 }
+=======
+>>>>>>> 91fd5e281ede724f20b002794f8ce4bbe11ae904
