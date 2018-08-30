@@ -5,6 +5,9 @@
       require_once('view/user/home.php');
     }
 
+    public function confirm() {
+      require_once('view/pages/confirm.php');
+    }
 
     public function profile(){  
       if(!isset($_SESSION["id"])){  
@@ -19,6 +22,8 @@
       require_once('view/user/error.php');
     }
 
-   
+    public function subscribeMessage(){
+      require_once('view/pages/subscribeMessage.php');
+    }
   }
   ?>

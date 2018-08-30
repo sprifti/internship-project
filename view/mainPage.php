@@ -7,27 +7,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  </head>
-  <style type="text/css">
-
-   /* .open-button {
-    background-color: #555;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    opacity: 0.8;
-    
-    bottom: 23px;
-    right: 28px;
-    width: 280px;
-    } */
-
-    /* The popup form - hidden by default */
+    <link href="https://cdn.jsdelivr.net/themify-icons/0.1.2/css/themify-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="view/pages/kontakte.css">
+    <style>
     .form-popup {
       display: none;
       position: fixed;
-      bottom: 35%;
+      bottom: 20%;
       right: 15px;
       border: 3px solid #f1f1f1;
       z-index: 9;
@@ -77,21 +63,28 @@
       opacity: 1;
     }
   </style>
+  </head>
   <body>
 
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">4 Paw Friends</a>
-        </div>
-        <ul class="nav navbar-nav">
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+
 
 
 
           <?php 
           if( $action == 'welcome'  || $action == 'profile' || $action == 'index' ): ?>
 
-           <li class="active"><a href="?controller=user&action=welcome"  <span class="glyphicon glyphicon-home "></span> Kryefaqja</a></li>
+           <li><a href="?controller=user&action=welcome"  <span class="glyphicon glyphicon-home "></span> Kryefaqja</a></li>
 
          <?php endif ?>
 
@@ -113,7 +106,7 @@
 
         if( in_array($action, $actions) ): ?>
 
-          <li class="active"><a href="?controller=user&action=home"  <span class="glyphicon glyphicon-home "></span> Kryefaqja</a></li>
+          <li><a href="?controller=user&action=home"  <span class="glyphicon glyphicon-home "></span> Kryefaqja</a></li>
 
         <?php endif ?> 
 
@@ -122,7 +115,7 @@
         <?php 
 
         if( $action == 'welcome' ): ?>
-          <li class="active"><a href="?controller=pages&action=profile"  <span class="glyphicon glyphicon-user "></span> Profili </a></li> 
+          <li ><a href="?controller=pages&action=profile"  <span class="glyphicon glyphicon-user "></span> Profili </a></li> 
         <?php endif ?> 
       </ul>
 
@@ -260,8 +253,33 @@
           document.getElementById("myForm").style.display = "none";
         }
       </script>
+  
 
+  <section>
+  <p class="section-lead" style="font-size:20px">Cfare ofron platforma jone online ne ndihme te miqve me 4 putra</p>
+  <div class="services-grid">
+    <div class="service service1">
+      <i class="ti-gallery"></i>
+      <h4>Evente dhe artikuj</h4>
+      <p>Bashkohuni cdo eventi dhe lexoni te rejat me te fudnit.</p>
+      <a href="#" class="cta">Lexo me shume <span class="ti-angle-right"></a>
+    </div>
 
+    <div class="service service2">
+      <i class="ti-light-bulb"></i>
+      <h4>Informacion</h4>
+      <p>Mesoni si te trajtoni kafshet tuaja, nje guide per te qene nje pronar i mire.</p>
+      <a href="#" class="cta">Lexo me shume<span class="ti-angle-right"></a>
+    </div>
+
+    <div class="service service3">
+      <i class="ti-target"></i>
+      <h4>Ndihmoni miqte e humbur</h4>
+      <p>Klikoni per te pare postimet mbi kafshet e humbura, kontaktoni pronarin</p>
+      <a href="#" class="cta">Lexo me shume<span class="ti-angle-right"></span></a>
+    </div>
+  </div>
+</section>
     </body>
     </html>
 

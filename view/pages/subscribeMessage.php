@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +5,7 @@
 </head>
 <body>
 
-Ky eshte profili juaj!
+	you just subscribed
+
 </body>
 </html>
