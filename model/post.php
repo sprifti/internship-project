@@ -122,11 +122,9 @@
                   
                     $mail->isHTML(true);                                  
                     $mail->Subject = 'New post';
-<<<<<<< HEAD
+
                     $mail->Body    = "Hey there! Look at this amazing new post <a href='http://localhost/project/index.php?controller=posts&action=showPost&id=$id' >Click here</a>";
-=======
-                    $mail->Body    = "Hey there! Look at this amazing new post <a href='http://localhost/taleas/index.php?controller=posts&action=showPost&id=$id' >Click here</a>";
->>>>>>> 91fd5e281ede724f20b002794f8ce4bbe11ae904
+
 
                     $mail->send();
                   
@@ -162,6 +160,20 @@
           
           
 
+        }
+
+         public static function showYourPost($email) {
+          $list = [];
+          $db = Db::getInstance();
+          $result = $db->prepare('SELECT id, name, image, content, titull,data FROM post WHERE email = ? ORDER BY id DESC');
+          $result ->execute([$email]);
+
+          
+          foreach($result->fetchAll() as $post) {
+            $list[] = new Post($post['id'], $post['name'], $post['image'], $post['content'], $post['titull'], $post['data']);
+          }
+
+          return $list;
         }
 
 

@@ -1,7 +1,16 @@
-  <?php
+ <?php
 
     require_once('model/connect.php');
+    require_once('model/user.php');
+
     session_start();
+
+    if(isset($_COOKIE["id"]))
+    {
+      $_SESSION["id"] = $_COOKIE["id"];
+      $controller = 'user';
+      $action     = 'welcome';
+    }
 
      if (isset($_GET['controller']) && isset($_GET['action'])) {
       $controller = $_GET['controller'];

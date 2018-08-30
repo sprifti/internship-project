@@ -13,11 +13,8 @@
 	    
 	    <div class="col-md-8 col-md-offset-2">
 	        
-<<<<<<< HEAD
     		<h1 >Krijo nje postim</h1>
-=======
-    		<h1>Krijo nje postim</h1>
->>>>>>> 91fd5e281ede724f20b002794f8ce4bbe11ae904
+
     		
     		<form action="index.php?controller=posts&action=addPost" method="POST" enctype="multipart/form-data">
     		    
@@ -67,7 +64,3 @@
 
 
 
-<!--<p>This is the requested post:</p>
-
-<p><?php echo $post->name; ?></p>
-<p><?php echo $post->content; ?></p> -->

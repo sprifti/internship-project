@@ -2,10 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
+
 <link rel="stylesheet" type="text/css" href="view/posts/poste.css">
-=======
->>>>>>> 91fd5e281ede724f20b002794f8ce4bbe11ae904
+
  <div class="container">
   <div class="row">
     <div class="col-md-8">
@@ -30,7 +29,7 @@
                   <?php if($post->content != ''): ?>
                     <div class="comment-post">
 
-                      <textarea style="border: none" rows="5" cols="80" readonly>
+                      <textarea style="border: none" rows="5" cols="70" readonly>
                         <?php echo $post->content; ?>
                       </textarea>
 
@@ -39,14 +38,12 @@
                     <?php endif ?>
 
                       <?php if($post->image != ''): ?>
-<<<<<<< HEAD
+
                       <div class="imazh">
                         <img width="200px" height="200px" src="upload/<?php echo $post->image; ?>">
-=======
+
                       <div>
-                        <img src="upload/<?php echo $post->image; ?>">
->>>>>>> 91fd5e281ede724f20b002794f8ce4bbe11ae904
-                      </div>
+                       
                       <?php endif ?>
                       <br />
                       <!-- <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p> -->

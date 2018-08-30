@@ -25,12 +25,10 @@ function emailValidation()
 
                                document.getElementById('emailError').innerHTML="* This email doesn't have an account";
                                document.getElementById('emailError').style.color='black';
-                              errors=true;
-                              $('#mainForm').attr('onsubmit', 'return false'); 
+                              
                         } else{
                             document.getElementById('emailError').innerHTML="";
-                              errors=true;
-                              $('#mainForm').attr('onsubmit', 'return true');
+                              
                         }
 
                     }

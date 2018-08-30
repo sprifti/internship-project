@@ -17,7 +17,7 @@ var errors;
     if(!fname.match(/^[a-zA-Z]+[a-z A-Z]+$/g))
         {
            
-            document.getElementById('fnameError').innerHTML="* It can contain only letters";
+            document.getElementById('fnameError').innerHTML="* Name can only contain letters";
             document.getElementById('fnameError').style.color='black';
             return false;
         }
@@ -218,7 +218,7 @@ function phoneValidation(){
 
             }
         else
-<<<<<<< HEAD
+
             if(!PhoneConfirm(phone)) {
                  document.getElementById('phoneError').innerHTML='Your phone number is not  valid';
                  document.getElementById('phoneError').style.color='black';
@@ -228,7 +228,7 @@ function phoneValidation(){
         else{
             document.getElementById('phoneError').innerHTML='Valid';
             document.getElementById('phoneError').style.color='black';}
-=======
+
             if(phone.length<10) {
                  document.getElementById('phoneError').innerHTML='Your phone number needs to have 10 character';
                  document.getElementById('phoneError').style.color='black';
@@ -237,12 +237,58 @@ function phoneValidation(){
         else
             document.getElementById('phoneError').innerHTML='Valid';
             document.getElementById('phoneError').style.color='black';
->>>>>>> 91fd5e281ede724f20b002794f8ce4bbe11ae904
+
 
 
 
 }
 
+
+function nameValidation()
+{
+    var name = document.getElementById('name').value;
+
+    if(name==''){
+            document.getElementById('nameError').innerHTML="* This field cannot be empty";
+            document.getElementById('nameError').style.color='black';
+            return false;
+    }
+    if(!name.match(/^[a-zA-Z]+[a-z A-Z]+$/g))
+        {
+           
+            document.getElementById('nameError').innerHTML="* It can contain only letters";
+            document.getElementById('nameError').style.color='black';
+            return false;
+        }
+    
+    else
+     {
+            document.getElementById('nameError').innerHTML="Valid";
+            document.getElementById('nameError').style.color='black';
+            
+     }
+    
+}
+    
+
+        function infoValidation()
+        {
+            var info = document.getElementById('info').value;
+
+            if(info == ''){
+                    document.getElementById('infoError').innerHTML="* This field cannot be empty";
+                    document.getElementById('infoError').style.color='black';
+                    
+             }
+            
+            else
+             {
+                    document.getElementById('infoError').innerHTML="Valid";
+                    document.getElementById('infoError').style.color='black';
+                    
+             }
+            
+        }
 
 
 
@@ -266,7 +312,7 @@ function validateFormVet()
     
    
 } 
-<<<<<<< HEAD
+
 
 function PhoneConfirm(phone){
 var access_key = '020a64a367e46927017500e0302f96b3';
@@ -291,5 +337,4 @@ $.ajax({
 });
 return returni;
 }
-=======
->>>>>>> 91fd5e281ede724f20b002794f8ce4bbe11ae904
+

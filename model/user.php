@@ -131,7 +131,10 @@
 
 				if ($user && password_verify($password, $user['password']))
 				{
-					return $user['confirm'];
+					
+						return $user;
+					
+					
 				} else {
 					return false;
 				}
@@ -172,13 +175,13 @@
 
 		}
 
-		public function reset($password,$email,$token)
+		public function reset($password,$token)
 		{
 
 			$db = Db::getInstance();
 
-			$result = $db->prepare("SELECT * FROM user WHERE email = ?");
-			$result->execute([$email]);
+			$result = $db->prepare("SELECT * FROM user WHERE token = ?");
+			$result->execute([$token]);
 			$user = $result->fetch();
 
 			if($user["token"] == $token)
@@ -190,9 +193,9 @@
 				if($user["id"] > 0)
 				{
 
-				$result = $db->prepare("UPDATE user SET password = :password WHERE email = :email ");
+				$result = $db->prepare("UPDATE user SET password = :password WHERE token = :token ");
 
-				$result->execute(array(':password' => $password ,':email' => $email ));
+				$result->execute(array(':password' => $password ,':token' => $token ));
 				return true;
 
 				}
@@ -239,6 +242,7 @@
 
 			$result = $db->prepare("SELECT * FROM user WHERE email = ?");
 			$result->execute([$email]);
+			
 			$user = $result->fetch();
 
 
@@ -253,9 +257,9 @@
 		public function updateToken($email){
 
 			$db = Db::getInstance();
-				$token = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM123456789!()';
+				$token = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM123456789!()#]\-?!';
 				$token = str_shuffle($token);
-				$token = substr($token,0,12);
+				$token = substr($token,0,30);
 
 			$result = $db->prepare("UPDATE user SET token = '$token' WHERE email=?");
 			
@@ -272,9 +276,9 @@
 
 		}
 
+		
 
-
-	}
+}
 
 
 
