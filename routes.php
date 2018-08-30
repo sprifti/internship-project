@@ -8,23 +8,33 @@
 
 	     switch($controller) 
 	    {
-	      case 'pages':
+	      	case 'pages':
+	      	require_once('model/pages.php');
 	        $controller = new PagesController();
-	      break;
+	      	break;
 	      
-	       case 'posts':
+	       	case 'posts':
 	        require_once('model/post.php');
 	        $controller = new PostsController();
-	      break;
+	      	break;
 
 	      	case 'user':
 	      	require_once('model/user.php');
 	      	$controller = new UserController;
-	      	
 	      	break;
-	      case 'forum':
-	      require_once('model/forum.php');
-	      $controller = new ForumController;
+
+	        case 'forum':
+	      	require_once('model/forum.php');
+	      	$controller = new ForumController;
+	      	break;
+
+	      	case 'pet':
+	      	require_once('model/pet.php');
+	      	$controller = new PetController;
+	      	break;
+
+
+
 
 
 	    
@@ -37,17 +47,18 @@
 
 			 $controllers = array('posts' => ['index','show', 'addPost', 'showPost'],
 			 					  'pages' => ['home', 'error','welcome','profile','subscribeMessage'],
-<<<<<<< HEAD
-								  'user' => ['signup','signupVet','signupStore','login','subscribe', 'logout', 'showNormalUser', 'welcome','showVet','showStore','showLogin','confirm', 'home', 'confirmEmail','facebook', 'sendMailPassword','resetPassword', 'showResetPassword', 'changePassword', 'showChangePassword', 'subscribe', 'artikuj', 'kontakte'],
-								  'forum'=>['index','show', 'addPost', 'showPost']
+
+								  'user' => ['signup','signupVet','signupStore','login','subscribe', 'logout', 'showNormalUser', 'welcome','showVet','showStore','showLogin','confirm', 'home', 'confirmEmail','facebook', 'sendMailPassword','resetPassword', 'showResetPassword', 'changePassword', 'showChangePassword', 'subscribe', 'artikuj', 'kontakte','subscribeWhenRegister',],
+								  'forum'=>['index','show', 'addPost', 'showPost',],
+								  'pet' => ['showPetRegister', 'signupPet'],
 
 
 
 
 								);
-=======
-								  'user' => ['signup','signupVet','signupStore','login','subscribe', 'logout', 'showNormalUser', 'welcome','showVet','showStore','showLogin','confirm', 'home', 'confirmEmail','facebook', 'sendMailPassword','resetPassword', 'showResetPassword', 'changePassword', 'showChangePassword', 'subscribe']);
->>>>>>> 91fd5e281ede724f20b002794f8ce4bbe11ae904
+
+								  
+
 
 
 			 if (array_key_exists($controller, $controllers)) 

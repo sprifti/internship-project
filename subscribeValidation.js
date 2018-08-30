@@ -81,7 +81,7 @@ function emailValidate()
         }else{  
                 $.ajax({
                 
-                    url: "checkdata.php",
+                    url: "checkSubscribe.php",
                     method: "POST",
                     data: {emailS: emailS},
                     success: function (response) {

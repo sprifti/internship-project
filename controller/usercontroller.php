@@ -259,6 +259,7 @@ class UserController{
 	}
 
 
+	
 
 
 
@@ -283,33 +284,40 @@ class UserController{
 			Header('location: index.php?controller=user&action=showLogin');
 		}
 
-		else{
-			$found = User::findUser($email,$password);
+		else{	 
+				
 
-			if($found == '1')
+					$found = User::findUser($email,$password);
 
-			{
-				$db = Db::getInstance();
+					if($found['confirm'] == '1')
 
-				$result = $db->prepare("SELECT id FROM user WHERE email = ?");
-				$result->execute([$email]);
-				$user = $result->fetch();
+					{	
+						
+
+						
+							$_SESSION["id"]=$found["id"];
+							Header('location: index.php?controller=user&action=welcome');
+
+							if(isset($_POST["remember"]))
+							{	 
+								
+								setcookie("id", $found["id"], time() + (86400 * 356));
+								// setcookie("password", $_POST["password"], time() + (86400 * 356) );
+
+								// setcookie("email", $_POST["email"], time() -3600);
+								// setcookie("password", $_POST["password"], time()-3600);
+
+							}
 
 				
-				
-				if($user != ''){
-					$_SESSION["id"]=$user["id"];
-					Header('location: index.php?controller=user&action=welcome');
+					}	else   header('location: index.php?controller=user&action=confirm');
+
+
+				   
 				}
 
-		
-				else   header('location: index.php?controller=user&action=confirm');
-
-
-			}
-
+			
 		}
-	}
 
 		public function welcome() {
 
@@ -325,13 +333,11 @@ class UserController{
 
 			require_once('view/pages/kontakte.php');
 
-<<<<<<< HEAD
+
 		} 
 
 
 
-=======
->>>>>>> 91fd5e281ede724f20b002794f8ce4bbe11ae904
 		public function confirm(){
 			/*echo "<script> alert('Ju lutem konfirmoni te dhenat tuaja! ');</script>"; */
 			
@@ -343,7 +349,7 @@ class UserController{
 
 
 		public function logout(){
-
+			setcookie("id", $_COOKIE["id"],time() - 3600);
 			session_destroy();
 			header('Location: index.php?controller=user&action=showLogin');
 		}
@@ -390,7 +396,6 @@ class UserController{
 
 		public function home(){
 			if(isset($_SESSION["id"])){  
-         
           header('location: index.php?controller=user&action=welcome');
           exit();
         }
@@ -466,11 +471,10 @@ class UserController{
 
 						$mail->isHTML(true);                                  
 						$mail->Subject = 'Confirmation email';
-<<<<<<< HEAD
+
 						$mail->Body    = "Hello there! Click here to be able to change your password <a href='http://localhost/project/index.php?controller=user&action=showChangePassword&token=$token'  >Click here</a>";
-=======
-						$mail->Body    = "Hello there! Click here to be able to change your password <a href='http://localhost/taleas/index.php?controller=user&action=showChangePassword&token=$token'  >Click here</a>";
->>>>>>> 91fd5e281ede724f20b002794f8ce4bbe11ae904
+
+
 
 						$mail->send();
 						echo 'Message has been sent';
@@ -493,10 +497,10 @@ class UserController{
 
 		public function resetPassword(){
 
-			$email = $_SESSION["email"];
+		
 
-			if(isset($_GET["token"])){
-				$token = $_GET["token"];
+			if(isset($_POST["token"])){
+				$token = $_POST["token"];
 			}
 			
 			if(isset($_POST["password"])){
@@ -515,7 +519,7 @@ class UserController{
 			else {
 
 				$_SESSION["error"] = "";
-				$reset = User::reset($password, $email,$token);
+				$reset = User::reset($password ,$token);
 
 				if($reset){
 					header('location: index.php?controller=user&action=login');			
@@ -562,6 +566,45 @@ class UserController{
 
 		}
 
+			public function subscribeWhenRegister()
+		{
+			$id = $_SESSION['id'];
+
+			$db = Db::getInstance();
+			$result = $db->prepare("SELECT email, name FROM user WHERE id = ?");
+			$result->execute(array($id));
+			$user = $result->fetch();
+
+			$email = $user['email'];
+			$name = $user['name'];
+				
+			
+			$created = User::createSubscribeUser($name, $email);
+
+			if($created == true){	
+
+				header('location: index.php?controller=user&action=welcome');
+			}
+
+		} 
+
+
+		public function subscribed(){
+
+			$db = Db::getInstance();
+
+			$id = $_SESSION["id"];
+			$result = $db->prepare("SELECT email FROM subscribe WHERE id = ?");
+			$result->execute(array($id));
+			$user = $result->fetch();
+
+			if($user["email"] != ''){
+				return true;
+			} 
+			else {
+				return false;
+			}
+		}
 
 
 

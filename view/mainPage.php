@@ -78,11 +78,21 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
 
+          <?php 
+         $actions = array(
+          'welcome',
+          'profile',
+          'index',
+          'showPetRegister',
+          
+        );
+
+        ?>
 
 
 
           <?php 
-          if( $action == 'welcome'  || $action == 'profile' || $action == 'index' ): ?>
+          if( in_array($action, $actions) ): ?>
 
            <li><a href="?controller=user&action=welcome"  <span class="glyphicon glyphicon-home "></span> Kryefaqja</a></li>
 
@@ -114,7 +124,7 @@
 
         <?php 
 
-        if( $action == 'welcome' ): ?>
+        if( $action == 'welcome' || $action == 'index' ): ?>
           <li ><a href="?controller=pages&action=profile"  <span class="glyphicon glyphicon-user "></span> Profili </a></li> 
         <?php endif ?> 
       </ul>
@@ -216,28 +226,63 @@
               <li><a type="button" class="open-button" onclick="openForm()"> <span class="glyphicon glyphicon-envelope" > </span>  Abonohu</a></li>
             <?php endif ?>
 
+              <?php  if($action == 'welcome'): ?>
+              <li><a type="button" class="open-button" href="index.php?controller=pet&action=showPetRegister"> <span class="glyphicon glyphicon-user" > </span>  Regjistroni kafshen tuaj</a></li>
+            <?php endif ?>
 
           </ul> 
         </div>
+  
 
 
 
 
       </nav>
       
+<?php require_once('routes.php'); ?>  
+      
 
-      <?php require_once('routes.php'); ?> 
-
+      <?php if($action == 'welcome'): ?>
+        <a type="button" id="abonohu" data-toggle="modal" href='#modal-id'>Abonohu</a>
+          <div class="modal fade" id="modal-id">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title">Abonohu</h4>
+                </div>
+                <div class="modal-body">
+                  <input type="hidden" name="id" id="id" value="<?php echo $_SESSION["id"]; ?>" >
+     
+                </div>
+                <span id="idError"></span>
+                <div class="modal-footer">
+                  <a type="button" id="yes"  class="btn btn-primary" href="index.php?controller=user&action=subscribeWhenRegister">Abonohu</a>
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Mbyll</button>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+       <?php endif ?>
+    
       <div class="form-popup" id="myForm">
         <form method="POST" action="index.php?controller=user&action=subscribe" class="form-container">
           <h1>Abonohu!</h1>
 
-          <label for="name"><b>Emri</b></label>
-          <input type="text" placeholder="  Emri" name="name" required>
+            <div>
+            <label for="nameS"><b>Emri</b></label>
+              <input type="text" placeholder="  Emri" name="nameS" id="nameS" required onfocusout="nameValidate()">
+            </div>
+          <span id="nameSError"></span>
 
-          <label for="email"><b>Email</b></label>
-          <input type="text" placeholder="  Email" name="email" required>
+          
 
+          <br />
+            <label for="emailS"><b>Email</b></label>
+            <input type="text" placeholder="  Email" name="emailS" id="emailS" required onfocusout="emailValidate()">
+          
+           <span id="emailSErrors"></span>
 
           <button type="submit" class="btn">Abonohu</button>
           <button class="btn cancel" onclick="closeForm()">Mbyll</button>
@@ -253,33 +298,46 @@
           document.getElementById("myForm").style.display = "none";
         }
       </script>
-  
 
-  <section>
-  <p class="section-lead" style="font-size:20px">Cfare ofron platforma jone online ne ndihme te miqve me 4 putra</p>
-  <div class="services-grid">
-    <div class="service service1">
-      <i class="ti-gallery"></i>
-      <h4>Evente dhe artikuj</h4>
-      <p>Bashkohuni cdo eventi dhe lexoni te rejat me te fudnit.</p>
-      <a href="#" class="cta">Lexo me shume <span class="ti-angle-right"></a>
-    </div>
+        <?php 
+            $actions = array(
+              'showNormalUser',
+              'showVet',
+              'showStore',
+              'showNormalUser',
+              'home'
+            );
 
-    <div class="service service2">
-      <i class="ti-light-bulb"></i>
-      <h4>Informacion</h4>
-      <p>Mesoni si te trajtoni kafshet tuaja, nje guide per te qene nje pronar i mire.</p>
-      <a href="#" class="cta">Lexo me shume<span class="ti-angle-right"></a>
-    </div>
+            ?>
 
-    <div class="service service3">
-      <i class="ti-target"></i>
-      <h4>Ndihmoni miqte e humbur</h4>
-      <p>Klikoni per te pare postimet mbi kafshet e humbura, kontaktoni pronarin</p>
-      <a href="#" class="cta">Lexo me shume<span class="ti-angle-right"></span></a>
-    </div>
-  </div>
-</section>
+      <?php  if(in_array($action, $actions)): ?>
+            <section>
+            <p class="section-lead" style="font-size:20px">Cfare ofron platforma jone online ne ndihme te miqve me 4 putra</p>
+            <div class="services-grid">
+              <div class="service service1">
+                <i class="ti-gallery"></i>
+                <h4>Evente dhe artikuj</h4>
+                <p>Bashkohuni cdo eventi dhe lexoni te rejat me te fudnit.</p>
+                <a href="#" class="cta">Lexo me shume <span class="ti-angle-right"></a>
+              </div>
+
+              <div class="service service2">
+                <i class="ti-light-bulb"></i>
+                <h4>Informacion</h4>
+                <p>Mesoni si te trajtoni kafshet tuaja, nje guide per te qene nje pronar i mire.</p>
+                <a href="#" class="cta">Lexo me shume<span class="ti-angle-right"></a>
+              </div>
+
+              <div class="service service3">
+                <i class="ti-target"></i>
+                <h4>Ndihmoni miqte e humbur</h4>
+                <p>Klikoni per te pare postimet mbi kafshet e humbura, kontaktoni pronarin</p>
+                <a href="#" class="cta">Lexo me shume<span class="ti-angle-right"></span></a>
+              </div>
+            </div>
+          </section>
+    <?php endif ?>
+    <script src="subscribeValidation.js"></script>
     </body>
     </html>
 
