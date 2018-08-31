@@ -472,7 +472,7 @@ class UserController{
 						$mail->isHTML(true);                                  
 						$mail->Subject = 'Confirmation email';
 
-						$mail->Body    = "Hello there! Click here to be able to change your password <a href='http://localhost/project/index.php?controller=user&action=showChangePassword&token=$token'  >Click here</a>";
+						$mail->Body    = "Hello there! Click here to be able to change your password <a href='http://localhost/projekt/index.php?controller=user&action=showChangePassword&token=$token'  >Click here</a>";
 
 
 
@@ -498,7 +498,6 @@ class UserController{
 		public function resetPassword(){
 
 		
-
 			if(isset($_POST["token"])){
 				$token = $_POST["token"];
 			}
@@ -519,7 +518,7 @@ class UserController{
 			else {
 
 				$_SESSION["error"] = "";
-				$reset = User::reset($password ,$token);
+				$reset = User::reset($password,$token);
 
 				if($reset){
 					header('location: index.php?controller=user&action=login');			

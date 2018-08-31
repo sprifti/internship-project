@@ -16,10 +16,10 @@ if(isset($_POST["email"])){
 			
 	if ($user["id"] >'0' ) {
 
-   		echo "yes";
+   		echo "Yes";
 	}
 	else { 
-		echo "no";
+		echo "No";
 	}
 
 }

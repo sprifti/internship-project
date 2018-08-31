@@ -107,7 +107,8 @@
           'showNormalUser',
           'showNormalUser',
           'home',
-          'showLogin'
+          'showLogin',
+          'showResetPassword'
         );
 
         ?>

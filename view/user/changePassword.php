@@ -4,7 +4,6 @@
     	
 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
 
 		<!-- Website CSS style -->
 		<link rel="stylesheet" type="text/css" href="view/user/login.css">
@@ -29,9 +28,12 @@
 	               	</div>
 	            </div> 
 				<div class="main-login main-center">
-					<?php if(isset($_GET["token"])){ $token = $_GET["token"];} ?>
-					<form class="form-horizontal" method="post" action="index.php?controller=user&action=resetPassword&token=<?php echo $token ?>" >
+					
+					<form class="form-horizontal" method="post" action="index.php?controller=user&action=resetPassword" >
 						
+							<?php if(isset($_GET["token"])){ $token = $_GET["token"];} ?>
+
+						<input type="hidden" name="token" id="token" value="<?php echo $_GET['token']; ?>">
 						
 						<div class="form-group">
 							<label for="email" class="cols-sm-2 control-label">Fjalekalimi</label>

@@ -17,11 +17,11 @@
 
 	$id = $user["id"];
 
-	if($id != ''){
-		echo 'Yes';
+	if($id > 0){
+		echo "Yes";
 	}
 	else {
-		echo 'No';
+		echo "No";
 	}
 
 
