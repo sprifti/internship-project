@@ -175,19 +175,23 @@
 
 		}
 
-		public function reset($password,$token)
+		public static function reset($password,$token)
 		{
+
+			
 
 			$db = Db::getInstance();
 
 			$result = $db->prepare("SELECT * FROM user WHERE token = ?");
 			$result->execute([$token]);
 			$user = $result->fetch();
+			
+			
 
 			if($user["token"] == $token)
 			{
-			
-
+				
+				
 				$password = password_hash($password, PASSWORD_DEFAULT);
 
 				if($user["id"] > 0)
@@ -201,7 +205,9 @@
 				}
 			
 			}
+
 		}
+
 
 		public function createSubscribeUser($name,$email){
 

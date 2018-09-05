@@ -59,15 +59,13 @@ var errors;
                     data: {email: email},
                     success: function (response) {
                         response = response.trim();
-                        if(response == "Yes" )
-                        { 
+                        if(response == "Yes" ){ 
+
                                document.getElementById('emailError').innerHTML="* Email already exists in our database";
                                document.getElementById('emailError').style.color='black';
                               errors=true;
                               $('#mainForm').attr('onsubmit', 'return false');
-                        }
-                        else
-                        if(response == "No"){
+                        }else{
                                document.getElementById('emailError').innerHTML="Valid";
                                document.getElementById('emailError').style.color='black';
                                errors=false;

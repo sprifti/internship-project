@@ -17,7 +17,7 @@ function idValidation()
                         response = response.trim();
                         if(response == "No" ){ 
 
-                               document.getElementById('idError').innerHTML="Doni te merrni njoftime mbi kafshet e humbura si dhe eventet me te fundit qe do te zhvillohen per ju dhe miqte me 4 putra? ";
+                               document.getElementById('idError').innerHTML=" Doni te merrni njoftime mbi kafshet e humbura si dhe eventet me te fundit qe do te zhvillohen per ju dhe miqte me 4 putra? ";
                                document.getElementById('idError').style.color='black';
                               
                               

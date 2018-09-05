@@ -1,11 +1,11 @@
 
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>  -->
+    <head> 
     	
-<!-- 
+
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css"> -->
+		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
 
 		<!-- Website CSS style -->
 		<link rel="stylesheet" type="text/css" href="view/user/login.css">
@@ -68,27 +68,25 @@
 							<button type="button"  name="facebook" id="facebook" class="btn btn-primary btn-lg btn-block login-button" onclick="logIn()">Facebook</button>
 						</div>
             <div class="pretty p-svg p-round p-plain p-jelly">
-              <div>
-                 <input type="checkbox" name="remember" id="remember" > Me mbaj mend
-              </div>
+                  <div>
+                    <input type="checkbox" name="remember" id="remember" > Me mbaj mend
+                  </div>
             </div>
-            
             <br />
-						<a href="index.php?controller=user&action=showResetPassword">Forgot password?</a>
+						<a href="index.php?controller=user&action=showResetPassword"><h6>Forgot password?</h6></a>
 					    
-            
-                        
+						
 					</form>
 				</div>
 			</div>
 		</div>
  	
 
+ <script type="text/javascript" src="assets/js/bootstrap.js"></script>
  <script
   src="http://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
-
 
 <script>
 
@@ -133,8 +131,6 @@
       version          : 'v3.1'
     });
   };
-
-
 
 
   (function(d, s, id){

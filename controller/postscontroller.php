@@ -10,6 +10,10 @@
       $posts = Post::all();
       require_once('view/posts/postime.php');
     }
+    public function indexh() {
+      $posts = Post::alllostAnimals();
+      require_once('view/posts/postimehumb.php');
+    }
 
     public function addPost() {
       require_once('controller/usercontroller.php');
@@ -46,7 +50,7 @@
           { 
            
               $fileNewName = uniqid().".".$fileType;
-              $fileDestination = 'upload/'.$fileNewName;
+              $fileDestination = 'uploads/'.$fileNewName;
               move_uploaded_file($fileTmpName, $fileDestination);
           
           }
@@ -95,29 +99,159 @@
     }
 
 
+      public function comment(){
+         if(isset($_POST["post"])){
+          $post = $_POST["post"];
+        }
 
-    public function subscribeUser() {
-     $id = $_SESSION["id"];
+        if(isset($_POST["user"])){
+          $user = $_POST["user"];
+        }
 
-     $subscribed = Post::findAndSubscribe($id);
-   }
+        if(isset($_POST["content"])){
+          $content = $_POST["content"];
+        }
 
 
+
+        $commented = Post::commentOnPost($content,$post,$user);
+
+        if($commented == true){
+          echo "Yes";
+        }
+      }
+
+      public function like()
+      {
+
+        if(isset($_POST["post"])){
+          $post = $_POST["post"];
+        }
+
+        if(isset($_POST["user"])){
+          $user = $_POST["user"];
+        }
+        
+        
+       
+        $liked = Post::likeAndUpdate($post,$user);
+
+        if($liked[1] == true)
+        {  
+          $liked = json_encode($liked);
+          echo $liked;
+          
+        }
+        else
+        {
+          $liked = json_encode($liked);
+          echo $liked;
+          
+        } 
+
+
+      }
+
+
+      public function delete(){
+
+        if(isset($_GET["idPost"])){
+          $idPost = $_GET["idPost"];
+        }
+        
+
+
+        $deleted = Post::deletePost($idPost);
+        
+        if($deleted == true){
+
+          header('Location: index.php?controller=posts&action=index');
+        }
+      }
+   //  public function subscribeUser() {
+   //   $id = $_SESSION["id"];
+
+   //   $subscribed = Post::findAndSubscribe($id);
+   // }
+
+      public function favorite(){
+
+         if(isset($_POST["post"])){
+          $post = $_POST["post"];
+        }
+
+        if(isset($_POST["user"])){
+          $user = $_POST["user"];
+        } 
+       
+
+        $favorited = Post::addFavorite($post,$user);
+        if($favorited[1] == true){
+          $favorited = json_encode($favorited);
+          echo $favorited;
+        }
+        else{
+          $favorited = json_encode($favorited);
+          echo $favorited;
+        }
+      }
+
+      public function showComments(){
+
+        if(isset($_POST["post"])){
+          $post = $_POST["post"];
+        }
+
+            $db = Db::getInstance();
+            $result = $db->prepare('SELECT * FROM comment c inner join user u on c.userId = u.id  WHERE postId = ?');
+            $result->execute([$post]);
+            $comments = $result->fetchAll();
+            $comments = json_encode($comments);
+            echo $comments;
+
+      }
 
    public function show() {
 
 
      if(!isset($_SESSION["id"])){  
-      Header('location: index.php?controller=user&action=showLogin');
+      header('Location: index.php?controller=user&action=showLogin');
       exit();
     } 
-
-
-
 
     require_once('view/posts/show.php');
   }
 
+  public function myFavorite(){
+
+    $id = $_SESSION["id"];
+
+    $posts = Post::showFavorites($id);
+
+     require_once('view/posts/favorite.php');
+
+
+  }
+
+
+    // public function unLike(){
+
+    //     if(isset($_POST["post"])){
+    //       $post = $_POST["post"];
+    //     }
+
+    //     if(isset($_POST["user"])){
+    //       $user = $_POST["user"];
+    //     } 
+
+    //     $unliked = Post::unlikePost($post,$user);
+    //     if($unliked == true){
+    //       echo "Yes";
+    //     }
+    //     else {
+    //       "No";
+    //     }
+    // }
 
 }
 ?>

@@ -8,12 +8,12 @@
 
 	     switch($controller) 
 	    {
-	      	case 'pages':
-	      	require_once('model/pages.php');
+	     	case 'pages':
+	     	require_once('model/pages.php');
 	        $controller = new PagesController();
 	      	break;
 	      
-	       	case 'posts':
+	        case 'posts':
 	        require_once('model/post.php');
 	        $controller = new PostsController();
 	      	break;
@@ -24,17 +24,14 @@
 	      	break;
 
 	        case 'forum':
-	      	require_once('model/forum.php');
-	      	$controller = new ForumController;
-	      	break;
+	        require_once('model/forum.php');
+	        $controller = new ForumController;
+	        break;
 
-	      	case 'pet':
+	        case 'pet':
 	      	require_once('model/pet.php');
 	      	$controller = new PetController;
 	      	break;
-
-
-
 
 
 	    
@@ -45,20 +42,18 @@
 
 	}
 
-			 $controllers = array('posts' => ['index','show', 'addPost', 'showPost'],
-			 					  'pages' => ['home', 'error','welcome','profile','subscribeMessage'],
 
-								  'user' => ['signup','signupVet','signupStore','login','subscribe', 'logout', 'showNormalUser', 'welcome','showVet','showStore','showLogin','confirm', 'home', 'confirmEmail','facebook', 'sendMailPassword','resetPassword', 'showResetPassword', 'changePassword', 'showChangePassword', 'subscribe', 'artikuj', 'kontakte','subscribeWhenRegister',],
-								  'forum'=>['index','show', 'addPost', 'showPost',],
-								  'pet' => ['showPetRegister', 'signupPet'],
+
+			 $controllers = array('posts' => ['index','show', 'addPost', 'showPost', 'indexh','showYourPost','like','delete','comment','favorite','showComments','unLike','myFavorite',],
+			 					  'pages' => ['home', 'error','welcome','profile','subscribeMessage', 'search'],
+								  'user' => ['signup','signupVet','signupStore','login','subscribe', 'logout', 'showNormalUser', 'welcome','showVet','showStore','showLogin','confirm', 'home', 'confirmEmail','facebook', 'sendMailPassword','resetPassword', 'showResetPassword', 'changePassword', 'showChangePassword', 'subscribe','subscribeWhenRegister', 'artikuj', 'kontakte', 'info','deleteSubscribe'],
+								  'forum'=>['index','show', 'addPost', 'showPost'],
+								   'pet' => ['showPetRegister', 'signupPet','showVaccine'],
 
 
 
 
 								);
-
-								  
-
 
 
 			 if (array_key_exists($controller, $controllers)) 
@@ -66,6 +61,7 @@
 			 {
 
 		    if (in_array($action, $controllers[$controller])) {
+
 			      call($controller, $action);
 			    } else {
 			      call('pages', 'error');

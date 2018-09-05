@@ -31,9 +31,9 @@
 					
 					<form class="form-horizontal" method="post" action="index.php?controller=user&action=resetPassword" >
 						
-							<?php if(isset($_GET["token"])){ $token = $_GET["token"];} ?>
+						<?php if(isset($_GET["token"])){ $token = $_GET["token"];} ?>
 
-						<input type="hidden" name="token" id="token" value="<?php echo $_GET['token']; ?>">
+						<input type="hidden" name="token" id="token" value="<?php echo $_GET["token"]; ?>">
 						
 						<div class="form-group">
 							<label for="email" class="cols-sm-2 control-label">Fjalekalimi</label>

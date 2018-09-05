@@ -1,4 +1,4 @@
- <?php
+  <?php
 
     require_once('model/connect.php');
     require_once('model/user.php');
@@ -20,6 +20,10 @@
       $action     = 'home';
     }
 
+  if(isset($_GET['response']) && $_GET['response'] == 'json'){
+    require_once('routes.php');
+  }else{
    require_once('view/mainPage.php');
+  }
 
   ?>

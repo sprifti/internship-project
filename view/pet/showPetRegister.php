@@ -30,7 +30,7 @@
 						<label for="fname" class="cols-sm-2 control-label">Une kam nje </label>
 						<select name="type">
 							<?php 
-								print_r($pets);
+								// print_r($pets);
 								foreach ($pets as $key => $pet) {	echo $key . "    " . $pet;?>
 
 									<option value="<?php echo $pets[$key]['id'] ?>"><?php echo $pets[$key]['animal'] ?></option>

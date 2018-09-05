@@ -14,12 +14,14 @@ if(isset($_POST["email"])){
 
 
 			
-	if ($user["id"] >'0' ) {
+
+	if ($user["id"] >'0'  ) {
 
    		echo "Yes";
 	}
 	else { 
 		echo "No";
+
 	}
 
 }

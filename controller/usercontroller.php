@@ -60,7 +60,7 @@ class UserController{
 
 					$mail->isHTML(true);                                  
 					$mail->Subject = 'Confirmation email';
-					$mail->Body    = "Please click on the link below to confirm your email <a href='http://localhost/project/index.php?controller=user&action=confirmEmail&email=$email&confirm_code=$created'  >Click here</a>";
+					$mail->Body    = "Please click on the link below to confirm your email <a href='http://localhost/project/work/index.php?controller=user&action=confirmEmail&email=$email&confirm_code=$created'  >Click here</a>";
 
 					$mail->send();
 					echo 'Message has been sent';
@@ -241,7 +241,7 @@ class UserController{
 
 					$mail->isHTML(true);                                  
 					$mail->Subject = 'Confirmation email';
-					$mail->Body    = "Please click on the link below to confirm your email <a href='http://localhost/project/index.php?controller=user&action=confirmEmail&email=$email&confirm_code=$created'  >Click here</a>";
+					$mail->Body    = "Please click on the link below to confirm your email <a href='http://localhost/project/work/index.php?controller=user&action=confirmEmail&email=$email&confirm_code=$created'  >Click here</a>";
 
 					$mail->send();
 					echo 'Message has been sent';
@@ -470,9 +470,9 @@ class UserController{
 
 
 						$mail->isHTML(true);                                  
-						$mail->Subject = 'Confirmation email';
+						$mail->Subject = 'Forgot password';
 
-						$mail->Body    = "Hello there! Click here to be able to change your password <a href='http://localhost/projekt/index.php?controller=user&action=showChangePassword&token=$token'  >Click here</a>";
+						$mail->Body    = "Hello there! Click here to be able to change your password <a href='http://localhost/project/work/index.php?controller=user&action=showChangePassword&token=$token'  >Click here</a>";
 
 
 
@@ -518,10 +518,11 @@ class UserController{
 			else {
 
 				$_SESSION["error"] = "";
+
 				$reset = User::reset($password,$token);
 
-				if($reset){
-					header('location: index.php?controller=user&action=login');			
+				if($reset == true){
+					echo "Yes";	
 					
 				}
 
@@ -529,6 +530,9 @@ class UserController{
 
 		}
 
+		public function info(){
+			require_once('view/pages/info.php');
+		}
 
 
 		public function showResetPassword(){
@@ -605,7 +609,23 @@ class UserController{
 			}
 		}
 
+		public function deleteSubscribe(){
 
+			$db = Db::getInstance();
+			$id = $_SESSION['id'];
+
+			$result = $db->prepare("SELECT email FROM user WHERE id = ?");
+			$result->execute(array($id));
+			$user = $result->fetch();
+
+			$email = $user["email"];
+
+			$db = Db::getInstance();
+			$result = $db->prepare("DELETE FROM subscribe WHERE email = ?");
+			$result->execute(array($email));
+			header('location: index.php?controller=user&action=welcome');
+
+		}
 
 	}
 

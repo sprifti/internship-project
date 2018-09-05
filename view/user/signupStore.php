@@ -4,6 +4,7 @@
 <html lang="en">
     <head> 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
 
 		<!-- Website CSS style -->
 		<link rel="stylesheet" type="text/css" href="view/user/main.css">
@@ -123,7 +124,7 @@
 			</div>
 		</div>
 
-
+		<script type="text/javascript" src="assets/js/bootstrap.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="validationVet.js"></script>
 	</body>

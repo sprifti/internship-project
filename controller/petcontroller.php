@@ -64,6 +64,9 @@
 		}
 
 
+		public function showVaccine(){
+			require_once('view/pet/showVaccine.php');
+		}
 
 		
 	}

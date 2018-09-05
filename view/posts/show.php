@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+<link rel="stylesheet" type="text/css" href="view/pages/profile.css">
 </head>
 <style type="text/css">
 
@@ -13,8 +13,7 @@
 	    
 	    <div class="col-md-8 col-md-offset-2">
 	        
-    		<h1 >Krijo nje postim</h1>
-
+    		<h1 style="font-family: georgia">Krijo nje postim</h1>
     		
     		<form action="index.php?controller=posts&action=addPost" method="POST" enctype="multipart/form-data">
     		    
@@ -26,14 +25,14 @@
     		    
     		    <div class="form-group">
     		        <label for="description">Permbajtja</label>
-    		        <textarea rows="5" maxlength="254" class="form-control" name="content" ></textarea>
+    		        <textarea rows="5" maxlength="254"  cols="70" class="form-control" name="content" ></textarea>
     		    </div>
     		    
     		    
     		    
     		    <div class="form-group">
     		    	<input type="file" name="file"><br />
-    		        <button type="submit" class="btn btn-primary">
+    		        <button type="submit" class="btn btn-primary" >
     		            Krijo
     		        </button>
     		        <a href="index.php?controller=posts&action=index" class="btn btn-default">
@@ -64,3 +63,7 @@
 
 
 
+<!--<p>This is the requested post:</p>
+
+<p><?php echo $post->name; ?></p>
+<p><?php echo $post->content; ?></p> -->

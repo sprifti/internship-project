@@ -13,7 +13,7 @@
     .form-popup {
       display: none;
       position: fixed;
-      bottom: 20%;
+      bottom: 10%;
       right: 15px;
       border: 3px solid #f1f1f1;
       z-index: 9;
@@ -21,9 +21,9 @@
 
     /* Add styles to the form container */
     .form-container {
-      max-width: 300px;
+      max-width: 200px;
       padding: 10px;
-      background-color: white;
+      background-color: #e6e6ff;
     }
 
     /* Full-width input fields */
@@ -43,7 +43,7 @@
 
     /* Set a style for the submit/login button */
     .form-container .btn {
-      background-color: #4CAF50;
+      background-color: #b3b3ff;
       color: white;
       padding: 16px 20px;
       border: none;
@@ -55,7 +55,7 @@
 
     /* Add a red background color to the cancel button */
     .form-container .cancel {
-      background-color: red;
+      background-color: #6666ff;
     }
 
     /* Add some hover effects to buttons */
@@ -78,21 +78,11 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
 
-          <?php 
-         $actions = array(
-          'welcome',
-          'profile',
-          'index',
-          'showPetRegister',
-          
-        );
-
-        ?>
 
 
 
           <?php 
-          if( in_array($action, $actions) ): ?>
+          if( $action == 'welcome'  || $action == 'profile' || $action == 'index' ): ?>
 
            <li><a href="?controller=user&action=welcome"  <span class="glyphicon glyphicon-home "></span> Kryefaqja</a></li>
 
@@ -108,7 +98,11 @@
           'showNormalUser',
           'home',
           'showLogin',
-          'showResetPassword'
+          'indexh',
+          'show',
+          'search',
+          'info',
+          'myFavorite',
         );
 
         ?>
@@ -125,7 +119,7 @@
 
         <?php 
 
-        if( $action == 'welcome' || $action == 'index' ): ?>
+        if( $action == 'welcome' ): ?>
           <li ><a href="?controller=pages&action=profile"  <span class="glyphicon glyphicon-user "></span> Profili </a></li> 
         <?php endif ?> 
       </ul>
@@ -181,7 +175,7 @@
 
           <?php 
 
-          if( $action == 'profile'  || $action == 'welcome'):  ?>
+          if( $action == 'profile'  || $action == 'welcome' || $action == 'search'):  ?>
 
             <li>
               <a href="?controller=posts&action=index">  
@@ -192,7 +186,7 @@
 
           <?php 
 
-          if( $action == 'profile'  || $action == 'index'):  ?>
+          if( $action == 'profile'  || $action == 'index' ):  ?>
             <li>
               <a href="?controller=posts&action=show">  
                 <span class="glyphicon glyphicon-folder-open"></span>  Shto nje postim
@@ -227,24 +221,50 @@
               <li><a type="button" class="open-button" onclick="openForm()"> <span class="glyphicon glyphicon-envelope" > </span>  Abonohu</a></li>
             <?php endif ?>
 
+
+
               <?php  if($action == 'welcome'): ?>
               <li><a type="button" class="open-button" href="index.php?controller=pet&action=showPetRegister"> <span class="glyphicon glyphicon-user" > </span>  Regjistroni kafshen tuaj</a></li>
             <?php endif ?>
 
-          </ul> 
-        </div>
-  
 
+
+            <?php 
+
+            $actions = array(
+              'welcome',
+              'index',
+              'profile',
+              'search'
+            );
+
+          ?>
+
+          <?php  if(in_array($action, $actions)): ?>
+                <div >
+                  <form method="GET" name="searchForm">
+                    <input type="hidden" name="controller" id="controller" value="pages">
+                    <input type="hidden" name="action" id="action" value="search">
+                    <input type="text" name="type" id="type" placeholder="Kerko..."><input type="submit" name="go" value="Go">
+                  </form>
+                </div>
+          <?php endif ?>
+
+
+        </ul> 
+      </div>
 
 
 
       </nav>
       
-<?php require_once('routes.php'); ?>  
-      
+
+      <?php require_once('routes.php'); ?> 
+
 
       <?php if($action == 'welcome'): ?>
-        <a type="button" id="abonohu" data-toggle="modal" href='#modal-id'>Abonohu</a>
+        
+        <a style="margin-left: 47%" type="button" class="btn btn-default" id="abonohu" data-toggle="modal" href='#modal-id'>Abonohu</a>
           <div class="modal fade" id="modal-id">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -258,6 +278,8 @@
                 </div>
                 <span id="idError"></span>
                 <div class="modal-footer">
+                  <a style="margin-left: 40%" class="btn btn-primary" type="button" id="delete" href="index.php?controller=user&action=deleteSubscribe">Unsubscribe</a>
+
                   <a type="button" id="yes"  class="btn btn-primary" href="index.php?controller=user&action=subscribeWhenRegister">Abonohu</a>
                   <button type="button" class="btn btn-default" data-dismiss="modal">Mbyll</button>
                   
@@ -266,12 +288,12 @@
             </div>
           </div>
        <?php endif ?>
-    
+
       <div class="form-popup" id="myForm">
         <form method="POST" action="index.php?controller=user&action=subscribe" class="form-container">
-          <h1>Abonohu!</h1>
+          <h1 style="font-family: courier">Abonohu</h1>
 
-            <div>
+           <div>
             <label for="nameS"><b>Emri</b></label>
               <input type="text" placeholder="  Emri" name="nameS" id="nameS" required onfocusout="nameValidate()">
             </div>
@@ -284,6 +306,7 @@
             <input type="text" placeholder="  Email" name="emailS" id="emailS" required onfocusout="emailValidate()">
           
            <span id="emailSErrors"></span>
+
 
           <button type="submit" class="btn">Abonohu</button>
           <button class="btn cancel" onclick="closeForm()">Mbyll</button>
@@ -299,46 +322,54 @@
           document.getElementById("myForm").style.display = "none";
         }
       </script>
-
-        <?php 
+  
+<br />
+   <?php 
             $actions = array(
               'showNormalUser',
               'showVet',
               'showStore',
+              'subscribeMessage',
               'showNormalUser',
-              'home'
+              'showNormalUser',
+              'showLogin',
+              'welcome',
+              'home',
             );
 
             ?>
+<br />
+<br />
+ <?php  if(in_array($action, $actions)): ?>
+  <section>
+    <?php  if($action != 'welcome'): ?>
+  <p class="section-lead" style="font-size:20px;">Cfare ofron platforma jone online ne ndihme te miqve me 4 putra</p> <?php endif ?>
+  <div class="services-grid">
+    <div class="service service1">
+      <i class="ti-gallery"></i>
+      <h4>Evente dhe artikuj</h4>
+      <p>Bashkohuni cdo eventi dhe lexoni te rejat me te fudnit.</p>
+      <a href="#" class="cta">Lexo me shume <span class="ti-angle-right"></a>
+    </div>
 
-      <?php  if(in_array($action, $actions)): ?>
-            <section>
-            <p class="section-lead" style="font-size:20px">Cfare ofron platforma jone online ne ndihme te miqve me 4 putra</p>
-            <div class="services-grid">
-              <div class="service service1">
-                <i class="ti-gallery"></i>
-                <h4>Evente dhe artikuj</h4>
-                <p>Bashkohuni cdo eventi dhe lexoni te rejat me te fudnit.</p>
-                <a href="#" class="cta">Lexo me shume <span class="ti-angle-right"></a>
-              </div>
+    <div class="service service2">
+      <i class="ti-light-bulb"></i>
+      <h4>Informacion</h4>
+      <p>Mesoni si te trajtoni kafshet tuaja, nje guide per te qene nje pronar i mire.</p>
+      <a href="index.php?controller=user&action=info" class="cta">Lexo me shume<span class="ti-angle-right"></a>
+    </div>
 
-              <div class="service service2">
-                <i class="ti-light-bulb"></i>
-                <h4>Informacion</h4>
-                <p>Mesoni si te trajtoni kafshet tuaja, nje guide per te qene nje pronar i mire.</p>
-                <a href="#" class="cta">Lexo me shume<span class="ti-angle-right"></a>
-              </div>
-
-              <div class="service service3">
-                <i class="ti-target"></i>
-                <h4>Ndihmoni miqte e humbur</h4>
-                <p>Klikoni per te pare postimet mbi kafshet e humbura, kontaktoni pronarin</p>
-                <a href="#" class="cta">Lexo me shume<span class="ti-angle-right"></span></a>
-              </div>
-            </div>
-          </section>
-    <?php endif ?>
+    <div class="service service3">
+      <i class="ti-target"></i>
+      <h4>Ndihmoni miqte e humbur</h4>
+      <p>Klikoni per te pare postimet mbi kafshet e humbura, kontaktoni pronarin</p>
+      <a href="index.php?controller=posts&action=indexh" class="cta">Lexo me shume<span class="ti-angle-right"></span></a>
+    </div>
+  </div>
+</section>
+<?php endif ?>
     <script src="subscribeValidation.js"></script>
+
     </body>
     </html>
 
