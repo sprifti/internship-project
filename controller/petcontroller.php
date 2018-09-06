@@ -65,7 +65,28 @@
 
 
 		public function showVaccine(){
-			require_once('view/pet/showVaccine.php');
+
+
+			if(isset($_POST["pet_id"])){
+				$pet_id = $_POST["pet_id"];
+			}
+
+			if(isset($_POST["age"])){
+				$age = $_POST["age"];
+			}
+			
+			$response = Pet::findVaccine($pet_id, $age);
+
+			if($response[1] == true){
+				$response = json_encode($response);
+				echo $response;
+
+			} 
+			else{
+				$response = json_encode($response);
+				echo $response;
+			}
+
 		}
 
 		

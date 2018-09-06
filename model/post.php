@@ -77,16 +77,7 @@
           return $list;
         }
 
-        public function showYourData($owner){
-
-          $db = Db::getInstance();
-          $result = $db->prepare('SELECT name,info,breed FROM pet WHERE owner = ?');
-          $result ->execute([$owner]);
-          
-          $list = $result->fetchAll();
-
-          return $list;
-        }
+    
 
 
         public function add($title,$content,$id,$fileNewName){

@@ -1,5 +1,6 @@
   <?php
   require_once('model/post.php');
+ 
   class PagesController {
 
     public function home() {
@@ -27,9 +28,10 @@
       $result ->execute([$id]);
       $name = $result->fetch();
 
-      $result = $db->prepare('SELECT name,info,breed FROM pet WHERE owner = ?');
+      $result = $db->prepare('SELECT id,name,info,breed FROM pet WHERE owner = ?');
       $result ->execute([$id]);
       $pet = $result->fetch();
+
       require_once('view/pages/profile.php');
     }
 

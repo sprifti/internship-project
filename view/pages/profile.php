@@ -8,7 +8,7 @@
 <script>
   $(document).ready(function(){
     $("#vaccine").click(function(){
-      $("#animalVaccine").slideToggle();
+      $(".animalVaccine").slideToggle();
     });
    
 
@@ -29,17 +29,24 @@
   <p><h5 style="font-size: 15px"><?php echo $pet["name"]; ?> eshte <?php echo $pet["breed"]; ?></h5></p>
  <!--  <p>Nje pershkrim i shkurter per mikun tim</p> -->
   <p><h5><?php echo $pet["info"]; ?></h5></p>
-  *Nqs <?php echo $pet["name"]; ?> eshte 0-12 muajsh ateher mund te merrni info mbi
-  <a type="button" id="vaccine">Vaksinat</a>*
+  <a type="button" id="vaccine">Vaksinat</a>
 
-  <form id="animalVaccine" style="display: none" method="POST" action="index.php?controller=pet&action=showVaccine">
-   <?php echo $pet["name"]; ?> eshte <select>
+  <form class="animalVaccine" style="display: none"><br />
+      *Nqs <?php echo $pet["name"]; ?> eshte 0-12 muajsh ateher mund te merrni info mbi vaksinat qe duhet te kryej ne kete moshe te caktuar* <br />
+<br />
+   <?php echo $pet["name"]; ?> eshte <select name="age" id="age">
       <option value="zero">0-3 muajsh</option>
       <option value="three">3-6 muajsh</option>
       <option value="six">6-9 muajsh</option>
       <option value="nine">9-12 muajsh</option>
     </select>
+    
+    <input type="hidden" id="pet_id" name="pet_id" value="<?php echo $pet["id"]; ?>">
+    <input type="button" onclick="vaccine()" value="Kerko">
+    <br />
+     Per me teper informacione rreth vaksinave per moshat +12 muaj klikoni <a>ketu</a>
   </form>
+  <p id="description"></p>
 </div>	
 
 	<div class="row">
@@ -109,6 +116,7 @@
     </div>
 </div>
 
+        <script src="postValidation.js"></script>
 
 </body>
 </html>

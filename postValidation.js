@@ -119,3 +119,34 @@ function comment(){
 
                 });
 }
+
+
+function vaccine(){
+
+        var age = document.getElementById('age').value;
+        var pet_id = document.getElementById('pet_id').value;
+        
+                $.post("index.php?controller=pet&action=showVaccine&response=json",
+                    {age: age, pet_id: pet_id}
+                    ,function (response) {
+                     response = JSON.parse(response);
+
+                        if(response[0] == "Yes" ){ 
+
+                           
+                            document.getElementById('description').innerHTML=response[2] + '<br />' + response[3];
+                             $(".animalVaccine").hide();
+
+                        } 
+                        else{
+
+                            document.getElementById('description').innerHTML="Miku juaj eshte regjistruar per kete vaksine";
+                             $(".animalVaccine").hide();
+
+                    }
+
+
+
+                });
+                        
+}
